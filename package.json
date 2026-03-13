@@ -1,0 +1,27 @@
+{
+  "name": "tienda_virtual",
+  "version": "1.0.0",
+  "description": "es un sitio web para gestionar una tienda de ropa, donde se pueden agregar, eliminar y modificar productos, así como también gestionar las ventas y los clientes.",
+  "keywords": [],
+  "license": "ISC",
+  "author": "GARRIDO",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.19.1",
+    "sequelize": "^6.37.8",
+    "sequelize-cli": "^6.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
