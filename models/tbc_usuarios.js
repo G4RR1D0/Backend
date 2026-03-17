@@ -1,6 +1,7 @@
 
 'use strict';
 const { Model } = require('sequelize');
+const { FOREIGNKEYS } = require('sequelize/lib/query-types');
 
 module.exports = (sequelize, DataTypes) => {
   class tbc_usuarios extends Model {
@@ -30,6 +31,14 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'tbc_usuarios',
   });
+
+tbc_usuarios.associate = (models) => {
+  tbc_usuarios.hasMany(MediaElementAudioSourceNode.tbc_carrito,{
+    foreignkey: 'id_usuario',
+    as : 'tbc_carrito'
+  })
+}
+
 
   return tbc_usuarios;
 };

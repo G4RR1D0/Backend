@@ -1,22 +1,23 @@
 {
   "development": {
-    "username": "root",
-  "password": "root",
-    "database": "dino_db",
-    "host": "127.0.0.1",
+    "username": "$DB_USER",
+    "password": "$DB_PASSWORD",
+    "database": "$DB_NAME",
+    "host": "$DB_HOST",
+    "port": "$DB_PORT",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-   "password": "root",
-      "database": "dino_db_test",
+    "password": null,
+    "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-   "password": "root",
-    "database": "dino_db_production",
+    "password": null,
+    "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }

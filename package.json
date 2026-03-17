@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "description": "es un sitio web para gestionar una tienda de ropa, donde se pueden agregar, eliminar y modificar productos, así como también gestionar las ventas y los clientes.",
   "keywords": [],
+  "homepage": "https://github.com/G4RR1D0/Backend#readme",
+  "bugs": {
+    "url": "https://github.com/G4RR1D0/Backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/G4RR1D0/Backend.git"
+  },
   "license": "ISC",
   "author": "GARRIDO",
   "type": "commonjs",
