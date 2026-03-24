@@ -1,4 +1,5 @@
 'use strict';
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -9,31 +10,53 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+
       nombre: {
         type: Sequelize.STRING(100),
+        allowNull: false
       },
+
       descripcion: {
         type: Sequelize.STRING(150),
+        allowNull: true
       },
+
       precio: {
-        type: Sequelize.DECIMAL(100),
+        type: Sequelize.DECIMAL(10, 2),
+        allowNull: false
       },
+
       stock: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
       },
+
       id_categoria: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'tbc_categorias',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT'
       },
+
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       },
+
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       }
     });
   },
+
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('tbc_productos');
   }

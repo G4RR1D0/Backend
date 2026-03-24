@@ -10,9 +10,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_usuario: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
+  type: Sequelize.INTEGER,
+  allowNull: false,
+  references: {
+    model: 'tbc_usuarios',
+    key: 'id'
+  }
+},
       estado: {
         type: Sequelize.STRING,
         allowNull: false,
