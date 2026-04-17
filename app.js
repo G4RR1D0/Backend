@@ -2,33 +2,46 @@ require('dotenv').config();
 
 const express = require('express');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
 const http = require('http');
 
-// Crear app PRIMERO
 const app = express();
 
-// Middlewares
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Rutas
-app.get('/', (req, res) => res.status(200).send({
-    message: 'Bienvenido a la API REST de compras.',
-}));
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Bienvenido a la API REST de compras',
+    endpoints: {
+      usuarios: 'http://localhost:8000/usuarios',
+      categorias: 'http://localhost:8000/categorias',
+      productos: 'http://localhost:8000/productos',
+      carritos: 'http://localhost:8000/carritos',
+      detalle_carrito: 'http://localhost:8000/carrito_detalle'
+    }
+  });
+});
 
-const rutaCategoria = require('./routers/route_categoria');
-app.use('/categorias', rutaCategoria);
+const rutaUsuarios = require('./routers/route_usuario');
+const rutaCategorias = require('./routers/route_categoria');
+const rutaProductos = require('./routers/route_producto');
+const rutaCarritos = require('./routers/route_carrito');
+const rutaDetalle = require('./routers/route_carrito_detalle');
 
-// Puerto
+app.use('/usuarios', rutaUsuarios);
+app.use('/categorias', rutaCategorias);
+app.use('/productos', rutaProductos);
+app.use('/carritos', rutaCarritos);
+app.use('/carrito_detalle', rutaDetalle);
+
 const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);
 
-// Servidor
 const server = http.createServer(app);
+
 server.listen(port, () => {
-    console.log(`Servidor corriendo en http://localhost:${port}`);
+  console.log(`Servidor corriendo en http://localhost:${port}`);
 });
 
 module.exports = app;

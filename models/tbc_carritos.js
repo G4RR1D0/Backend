@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
   class tbc_carritos extends Model {
     static associate(models) {
       tbc_carritos.belongsTo(models.tbc_usuarios, {
-        foreignKey: 'id_usuario'
+        foreignKey: 'id_usuario',
+        as: 'usuario'
       });
     }
   }
@@ -35,14 +36,6 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'tbc_carritos',
     tableName: 'tbc_carritos'
   });
-
-
-tbc_carritos.associate = (models) =>{
-  tbc_carritos.belongsTo(models.tbc_usuarios, {
-    foreignKey: 'id_usuario',
-    as: 'tbc_usuario'
-  });
-}
 
   return tbc_carritos;
 };

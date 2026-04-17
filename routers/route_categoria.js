@@ -1,10 +1,45 @@
-const categoriacontroller =require('../controllers/controller_categoria');
+const express = require('express');
+const router = express.Router();
+const db = require('../models');
 
-module.exports =(app) =>{
-    app.get('/api/categorias', categoriacontroller.list);
-    app.get('/api/categoria/: nombre', categoriacontroller.find);
-    app.post('/api/categoria/', categoriacontroller.create);
-    app.put('/api/categoria/:id', categoriacontroller.update);
-    app.delete('/api/categoria/:id', categoriacontroller.delete);
+router.get('/', async (req, res) => {
+  try {
+    const data = await db.tbc_categorias.findAll();
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
-}
+router.post('/', async (req, res) => {
+  try {
+    const data = await db.tbc_categorias.create(req.body);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.put('/:id', async (req, res) => {
+  try {
+    await db.tbc_categorias.update(req.body, {
+      where: { id_categoria: req.params.id }
+    });
+    res.json({ mensaje: 'Actualizado' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+    await db.tbc_categorias.destroy({
+      where: { id_categoria: req.params.id }
+    });
+    res.json({ mensaje: 'Eliminado' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+module.exports = router;
